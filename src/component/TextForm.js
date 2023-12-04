@@ -9,7 +9,7 @@ export default function TextForm(props) {
         let newText = text.toUpperCase();
         setText(newText);
         props.showAlert("Converted to Uppercase!", "success");
-    } 
+    }
 
     const handellowClick = () => {
         let newText = text.toLowerCase();
@@ -27,6 +27,7 @@ export default function TextForm(props) {
         let newText = document.getElementById("myBox");
         newText.select();
         navigator.clipboard.writeText(newText.value);
+        document.getSelection().removeAllRanges();
         props.showAlert("Copied to clipboard!", "success");
     }
 
@@ -41,24 +42,26 @@ export default function TextForm(props) {
     }
     return (
         <>
-            <div className='container' style={{color: props.mode==='dark'?'white':'black'}}>
-                <h1>{props.heading}</h1>
+            <div className='container' style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
+                <h2 className='mb-2'>{props.heading}</h2>
                 <div className="mb-3">
-                    <textarea className="form-control" value={text} onChange={handelonChange} style={{backgroundColor: props.mode==='dark'?'#0e4e60':'white', 
-                    color: props.mode==='dark'?'white':'black'}} id="myBox" rows="8"></textarea>
+                    <textarea className="form-control" value={text} onChange={handelonChange} style={{
+                        backgroundColor: props.mode === 'dark' ? '#0e4e60' : 'white',
+                        color: props.mode === 'dark' ? 'white' : 'black'
+                    }} id="myBox" rows="8"></textarea>
                 </div>
-                <button className="btn btn-primary mx-1" onClick={handelupClick}>Convert Uppercase</button>
-                <button className="btn btn-primary mx-1" onClick={handellowClick}>Convert Lowercase</button>
-                <button className="btn btn-primary mx-1" onClick={handelClear}>Clear Text</button>
-                <button className="btn btn-primary mx-1" onClick={handelCopy}>Copy Text</button>
-                <button className="btn btn-primary mx-1" onClick={handelExtraSpace}>Remove Extra Space</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handelupClick}>Convert Uppercase</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handellowClick}>Convert Lowercase</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handelClear}>Clear Text</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handelCopy}>Copy Text</button>
+                <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handelExtraSpace}>Remove Extra Space</button>
             </div>
-            <div className="conatiner my-2" style={{color: props.mode==='dark'?'white':'black'}}>
+            <div className="conatiner my-2" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h2>Summary</h2>
-                <p>{text.split(" ").length} word and {text.length} character</p>
-                <p>{0.008 * text.split(" ").length} Minutes read</p>
+                <p>{text.split(" ").filter((element)=>{return element.length !==0}).length} word and {text.length} character</p>
+                <p>{0.008 * text.split(" ").filter((element)=>{return element.length !==0}).length} Minutes read</p>
                 <h2>Preview</h2>
-                <p>{text.length>0?text:"Enter something in the above textbox to preview here."}</p>
+                <p>{text.length > 0 ? text : "Nothing to preview!"}</p>
             </div>
         </>
     )

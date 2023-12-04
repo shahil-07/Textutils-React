@@ -48,12 +48,12 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar title="textutils" mode={mode} toggleMode={toggleMode} />
+        <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
         <div className="container my-3">
           <Routes>
-            <Route exact path="/about" element={<About />} />
-            <Route exact path="/" element={<TextFrom showAlert={showAlert} heading="Enter the text to Analyze below" mode={mode} />} />
+            <Route exact path="/about" element={<About mode={mode} />} />
+            <Route exact path="/" element={<TextFrom showAlert={showAlert} heading="Try TextUtils - Word Counter, Charcter Counter, Remove extra space" mode={mode} />} />
           </Routes>
         </div>
       </Router>
