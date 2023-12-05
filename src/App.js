@@ -53,7 +53,7 @@ function App() {
         <div className="container my-3">
           <Routes>
             <Route exact path="/about" element={<About mode={mode} />} />
-            <Route exact path="/" element={<TextFrom showAlert={showAlert} heading="Try TextUtils - Word Counter, Charcter Counter, Remove extra space" mode={mode} />} />
+            <Route exact path="/" element={<TextFrom showAlert={showAlert} heading="Try TextUtils - Word Counter, Character Counter, Remove extra space" mode={mode} />} />
           </Routes>
         </div>
       </Router>
