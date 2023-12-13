@@ -43,7 +43,7 @@ export default function TextForm(props) {
                 <h2 className='mb-2'>{props.heading}</h2>
                 <div className="mb-3">
                     <textarea className="form-control" value={text} onChange={handelonChange} style={{
-                        backgroundColor: props.mode === 'dark' ? '#0e4e60' : 'white',
+                        backgroundColor: props.mode === 'dark' ? 'black' : 'white',
                         color: props.mode === 'dark' ? 'white' : 'black'
                     }} id="myBox" rows="8"></textarea>
                 </div>
